@@ -1,0 +1,12 @@
+[dependency-groups]
+# Phiên bản lấy từ môi trường AirDesk v1.1.4 đã hoạt động.
+runtime = [
+    "mediapipe==1.1.1",
+    "opencv-contrib-python==5.0.0.93",
+    "PySide6==6.12.0",
+    "numpy==2.5.4",
+    "matplotlib==3.11.2",
+    "pillow==13.0.0",
+]
+verify = [{include-group = "runtime"}, "pytest==9.1.1"]
+build = [{include-group = "verify"}, "pyinstaller==6.22.3"]

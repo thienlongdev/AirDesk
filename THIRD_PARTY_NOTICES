@@ -1,0 +1,109 @@
+# Ghi công và thông báo bên thứ ba
+
+Giữ nguyên văn các điều khoản giấy phép dưới đây. Tệp này không cấp giấy
+phép mã nguồn mở cho phần mã riêng của AirDesk. Chủ dự án chưa chọn giấy
+phép đó. Các phiên bản thư viện đang dùng được cố định trong pyproject.toml.
+Model Google được giữ kèm văn bản Apache-2.0 tại assets/models/LICENSE.
+
+AirDesk is original code. The components below were studied and the noted parts adapted
+(re-implemented, not copied verbatim unless stated). Their licenses are reproduced as required.
+
+| Project | Commit | License | What AirDesk uses |
+|---|---|---|---|
+| [AirTouch](https://github.com/Jhnbismark/airtouch) | 8bd72f3 | MIT | Adaptive Kalman idea: speed-scaled process noise in log space, speed-gated clamped prediction, constants `SPEED_LO/HI`, `PRED_LO/HI`, `q_min/q_max/r`. Re-written as two independent 2-state filters (`airdesk/core/filters.py`). |
+| [AirCursor](https://github.com/FarzamFattahi/aircursor) | b44af9f | MIT | Hand-identity continuity idea (follow the same wrist across frames) in `airdesk/core/selection.py` `HandSelector`. |
+| [Alpha-OSK](https://github.com/owenpkent/alpha-osk) | eb12523 | MIT | Win32 lessons for on-screen keyboards: INPUT union must contain MOUSEINPUT, KEYEVENTF_UNICODE, re-applying WS_EX_NOACTIVATE after Qt creates the HWND (`airdesk/platform/win32.py`, `airdesk/ui/keyboard_overlay.py`). |
+| [1€ Filter](https://github.com/casiez/OneEuroFilter) | d789255 | BSD-3-Clause (reference code) | Algorithm from Casiez, Roussel & Vogel, CHI 2012; re-implemented from the paper in `airdesk/core/filters.py`. |
+| [MediaPipe](https://github.com/google-ai-edge/mediapipe) | pip 1.1.1 | Apache-2.0 | Hand Landmarker task and model `assets/models/hand_landmarker.task`. |
+| Qt for Python (PySide6) | pip 6.12.0 | LGPL-3.0 | GUI toolkit, dynamically linked (shipped as separate DLLs in the onedir build). |
+| OpenCV | pip 5.0.0 | Apache-2.0 | Camera capture and image resizing. |
+| NumPy, Matplotlib, Pillow | pip | BSD / PSF-style | Numerics, benchmark charts, icon generation (build time). |
+
+Reviewed for reference only (no code or design adopted): Mouseless (MIT), handmouse (no license file - not reused),
+py-hand-tracker (MIT), virtual-keyboard-and-mouse (MIT), OptiKey (GPL - reference only, nothing adopted).
+
+
+## airtouch — MIT License
+
+```
+MIT License
+
+Copyright (c) 2026 John Bismark Ondoga
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+
+## aircursor — MIT License
+
+```
+MIT License
+
+Copyright (c) 2026 Farzam Fattahi
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+
+## alpha-osk — MIT License
+
+```
+MIT License
+
+Copyright (c) 2026 Owen Kent
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+
+## 1€ Filter reference implementation — BSD-3-Clause
+
+AirDesk does not include this code; the algorithm was re-implemented from the published paper. https://opensource.org/licenses/BSD-3-Clause

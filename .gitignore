@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Build output
+build/
+dist/
+release/
+*.spec.bak
+
+# Local data (never commit webcam footage, personal benchmarks or settings)
+*.mp4
+*.avi
+*.mkv
+recordings/
+bench_results/
+*.local.json
+settings.json
+
+# Editors / OS
+.vscode/
+.idea/
+Thumbs.db
+
+# Tài liệu và kết quả nội bộ giữ trên máy; README là hướng dẫn công khai duy nhất.
+/docs/
+/scripts/bench_camera.py
+/scripts/bench_v113.py
+/scripts/bench_v114.py
+/scripts/run_synthetic_bench.py
+.mypy_cache/
+.ruff_cache/
+.env
+.env.*
+*.log
+*.zip
