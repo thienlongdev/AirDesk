@@ -1,0 +1,3 @@
+# Preserve CRLF bytes in batch launchers, including GitHub source ZIPs.
+# GitHub archives must not depend on the owner's core.autocrlf setting.
+*.bat -text
